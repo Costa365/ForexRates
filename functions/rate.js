@@ -5,10 +5,10 @@ exports.handler = async function(event, context) {
   obj['base'] = event.queryStringParameters.base.toLowerCase()
   obj['quote'] = event.queryStringParameters.quote.toLowerCase()
   try {
-    const url = `https://cdn.jsdelivr.net/gh/fawazahmed0/currency-api@1/latest/currencies/${obj['base']}/${obj['quote']}.json`
+    const url = `https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${obj['base']}.json`
     const res = await fetch(url)
     const data = await res.json()
-    obj['rate'] = data[obj['quote']];
+    obj['rate'] = data[obj['base']][obj['quote']];
 
     return {
       statusCode: 200,
